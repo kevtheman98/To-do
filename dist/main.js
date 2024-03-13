@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/createTodo.js":
-/*!***************************!*\
-  !*** ./src/createTodo.js ***!
-  \***************************/
+/***/ "./src/createProjects.js":
+/*!*******************************!*\
+  !*** ./src/createProjects.js ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ create)\n/* harmony export */ });\nfunction create() {\n    const dialog = document.querySelector(\"dialog\")\n    const newListButton = document.querySelector(\"button\")\n    const container = document.querySelector(\".content\")\n    const confirmBtn = document.querySelector(\"#confirmBtn\")\n    newListButton.addEventListener(\"click\", () => {\n        dialog.showModal();\n        \n    })\n    \n    confirmBtn.addEventListener(\"click\", (event) => {\n        event.preventDefault();\n        dialog.close(title.value, duedate.value, description.value)\n        const box = document.createElement('div')\n        box.classList = \"box\"\n        const newTitle = document.createElement('input')\n        newTitle.value = title.value\n        const newdueDate = document.createElement('div')\n        newdueDate.textContent = duedate.value\n        const newDescription = document.createElement('div')\n        newDescription.textContent = description.value\n        container.appendChild(box)\n        box.appendChild(newTitle)\n        box.appendChild(newdueDate)\n        box.appendChild(newDescription)\n\n        \n    })\n   \n    \n}\n\n\n\n//# sourceURL=webpack://to-do/./src/createTodo.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ create)\n/* harmony export */ });\n/* harmony import */ var _makeTask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./makeTask */ \"./src/makeTask.js\");\n\n\nfunction create() {\n    const dialog = document.querySelector(\"dialog\")\n    const newListButton = document.querySelector(\"button\")\n    const container = document.querySelector(\".content\")\n    const confirmBtn = document.querySelector(\"#confirmBtn\")\n    newListButton.addEventListener(\"click\", () => {\n        dialog.showModal();\n        \n    })\n    \n    confirmBtn.addEventListener(\"click\", (event) => {\n        event.preventDefault();\n        dialog.close(title.value, duedate.value, description.value)\n        createProjects()\n\n        \n    })\n    let count = 0\n    function createProjects() {\n        const content = document.querySelector('.content')\n        const projectBox = document.createElement('button')\n        projectBox.classList = \"projectBox\"\n        count += 1\n        projectBox.setAttribute('title', title.value)\n        projectBox.setAttribute('id', count)\n        const newTitle = document.createElement('div')\n        newTitle.textContent = title.value\n        const newdueDate = document.createElement('div')\n        newdueDate.textContent = duedate.value\n        const newDescription = document.createElement('div')\n        newDescription.textContent = description.value\n        content.appendChild(projectBox)\n        projectBox.appendChild(newTitle)\n        projectBox.appendChild(newdueDate)\n        projectBox.appendChild(newDescription)\n        const createTask = document.createElement('button')\n        createTask.setAttribute('id', count)\n        projectBox.appendChild(createTask)\n        const projectList = document.querySelectorAll('.projectBox')\n        createTask.addEventListener('click', () => {\n            for(let i = 0; i < projectList.length;i++){\n                const projectId = projectList[i].id\n                if(projectId == createTask.id) {\n                    (0,_makeTask__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(projectList[i])\n                }\n                console.log(\"This odnt work\")\n\n            }\n            \n        })\n        \n        \n    }\n   \n    \n}\n\n\n\n//# sourceURL=webpack://to-do/./src/createProjects.js?");
 
 /***/ }),
 
@@ -26,7 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _createTodo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createTodo */ \"./src/createTodo.js\");\n\n\n(0,_createTodo__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\n\n//# sourceURL=webpack://to-do/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _createProjects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createProjects */ \"./src/createProjects.js\");\n/* harmony import */ var _makeTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./makeTask */ \"./src/makeTask.js\");\n\n\n\n(0,_createProjects__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\n;(0,_makeTask__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\n\n//# sourceURL=webpack://to-do/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/makeTask.js":
+/*!*************************!*\
+  !*** ./src/makeTask.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addTask)\n/* harmony export */ });\nfunction addTask(currentProject) {\n   if (currentProject) {\n      const taskBox = document.createElement(\"div\")\n      taskBox.classList = \"taskBox\"\n      const todo = document.createElement(\"input\")\n      currentProject.appendChild(taskBox)\n      taskBox.appendChild(todo)\n   } else {\n      console.log(\"This is teh fisrt one\")\n   }\n\n}\n\n//# sourceURL=webpack://to-do/./src/makeTask.js?");
 
 /***/ })
 

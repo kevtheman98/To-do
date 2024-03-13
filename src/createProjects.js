@@ -1,4 +1,5 @@
 import addTask from "./makeTask"
+import deleteTask from "./taskSettings"
 
 export default function create() {
     const dialog = document.querySelector("dialog")
@@ -37,6 +38,7 @@ export default function create() {
         projectBox.appendChild(newDescription)
         const createTask = document.createElement('button')
         createTask.setAttribute('id', count)
+        createTask.classList = "tasks"
         projectBox.appendChild(createTask)
         const projectList = document.querySelectorAll('.projectBox')
         createTask.addEventListener('click', () => {
@@ -44,6 +46,8 @@ export default function create() {
                 const projectId = projectList[i].id
                 if(projectId == createTask.id) {
                     addTask(projectList[i])
+                    
+                    
                 }
                 console.log("This odnt work")
 

@@ -1,8 +1,9 @@
-export default function makeTask(currentProject) {
+export default function makeTask(currentProjectTitle, currentProjectBox) {
    
-   if (currentProject) {
+   if (currentProjectTitle) {
       const taskBox = document.createElement("div")
       taskBox.classList = "taskBox"
+      taskBox.setAttribute('id', currentProjectTitle)
       const todo = document.createElement("input")
       taskBox.appendChild(todo)
       const settingfunc = settings()
@@ -11,7 +12,7 @@ export default function makeTask(currentProject) {
          function delbutton() {
             const delbutton = document.createElement('button')
             delbutton.textContent = "Delete"
-            currentProject.appendChild(taskBox)
+            currentProjectBox.appendChild(taskBox)
             taskBox.appendChild(delbutton)
 
             delbutton.addEventListener('click', () => {

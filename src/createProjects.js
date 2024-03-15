@@ -1,5 +1,4 @@
-import addTask from "./makeTask"
-import deleteTask from "./taskSettings"
+import makeTask from "./makeTask"
 
 export default function create() {
     const dialog = document.querySelector("dialog")
@@ -15,9 +14,12 @@ export default function create() {
         event.preventDefault();
         dialog.close(title.value, duedate.value, description.value)
         createProjects()
+    
 
         
     })
+    
+
     let count = 0
     function createProjects() {
         const content = document.querySelector('.content')
@@ -26,6 +28,7 @@ export default function create() {
         count += 1
         projectBox.setAttribute('title', title.value)
         projectBox.setAttribute('id', count)
+        
         const newTitle = document.createElement('div')
         newTitle.textContent = title.value
         const newdueDate = document.createElement('div')
@@ -45,8 +48,8 @@ export default function create() {
             for(let i = 0; i < projectList.length;i++){
                 const projectId = projectList[i].id
                 if(projectId == createTask.id) {
-                    addTask(projectList[i])
-                    
+                    localStorage.setItem('projectsStorage', projectList[i].title)
+                    makeTask(projectList[i].title, projectList[i])
                     
                 }
                 console.log("This odnt work")
@@ -57,6 +60,7 @@ export default function create() {
         
         
     }
+    
    
     
 }

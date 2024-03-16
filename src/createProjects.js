@@ -1,4 +1,9 @@
 import makeTask from "./makeTask"
+import storeProjects from "./storage"
+
+
+
+
 
 export default function create() {
     const dialog = document.querySelector("dialog")
@@ -13,7 +18,9 @@ export default function create() {
     confirmBtn.addEventListener("click", (event) => {
         event.preventDefault();
         dialog.close(title.value, duedate.value, description.value)
+
         createProjects()
+        storeProjects(title.value, duedate.value, description.value)
     
 
         
@@ -27,14 +34,19 @@ export default function create() {
         projectBox.classList = "projectBox"
         count += 1
         projectBox.setAttribute('title', title.value)
+        projectBox.setAttribute('duedate', duedate.value)
+        projectBox.setAttribute('description', description.value)
         projectBox.setAttribute('id', count)
         
         const newTitle = document.createElement('div')
         newTitle.textContent = title.value
+        newTitle.classList = 'projectTitle'
         const newdueDate = document.createElement('div')
         newdueDate.textContent = duedate.value
+        newdueDate.classList = 'dueDate'
         const newDescription = document.createElement('div')
         newDescription.textContent = description.value
+        newDescription.classList = 'description'
         content.appendChild(projectBox)
         projectBox.appendChild(newTitle)
         projectBox.appendChild(newdueDate)
@@ -48,7 +60,6 @@ export default function create() {
             for(let i = 0; i < projectList.length;i++){
                 const projectId = projectList[i].id
                 if(projectId == createTask.id) {
-                    localStorage.setItem('projectsStorage', projectList[i].title)
                     makeTask(projectList[i].title, projectList[i])
                     
                 }
@@ -61,7 +72,6 @@ export default function create() {
         
     }
     
-   
-    
 }
+
 

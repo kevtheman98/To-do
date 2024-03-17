@@ -1,6 +1,8 @@
 import create from './createProjects'
-import projectsTab from './makeTask'
+import makeTask from './makeTask'
+import { checkExisting } from './storage'
 
 
 create()
-projectsTab()
+checkExisting()
+

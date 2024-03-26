@@ -1,8 +1,7 @@
-import { newData } from ".";
-const data = newData()
 
-export function createProject() {
-    console.log(data.title)
+
+export function createProject(title, dueDate, description) {
+    console.log(title)
 }
 
 

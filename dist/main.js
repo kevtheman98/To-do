@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   newData: () => (/* binding */ newData)\n/* harmony export */ });\n/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects */ \"./src/projects.js\");\n\nconst dialog = document.querySelector('dialog')\nconst confirm = document.querySelector(\"#confirmBtn\")\nlet titleVal;\nlet dueDateVal;\nlet descriptionVal;\nconst addProjectBtn = document.querySelector(\".addProject\")\n\naddProjectBtn.addEventListener(\"click\", () => {\n    dialog.showModal();\n    confirm.addEventListener(\"click\", function(event) {\n        event.preventDefault(); \n        titleVal = document.querySelector(\"#title\").value;\n        dueDateVal = document.querySelector(\"#duedate\").value\n        descriptionVal = document.querySelector(\"#description\").value\n        \n\n        dialog.close()\n    });\n})\n\nfunction newData() {\n    return {\n        title: titleVal, \n        dueDate: dueDateVal,\n        description: descriptionVal}\n}\n\nif(newData) {\n    (0,_projects__WEBPACK_IMPORTED_MODULE_0__.createProject)()\n}\n\n\n\n//# sourceURL=webpack://to-do/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   newData: () => (/* binding */ newData)\n/* harmony export */ });\n/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects */ \"./src/projects.js\");\n\nconst dialog = document.querySelector('dialog')\nconst confirm = document.querySelector(\"#confirmBtn\")\nconst addProjectBtn = document.querySelector(\".addProject\")\nlet titleVal = \"\"\nlet dueDateVal = \"\"\nlet descriptionVal = \"\"\n\n\naddProjectBtn.addEventListener(\"click\", () => {\n    dialog.showModal();\n})\nconfirm.addEventListener(\"click\", function(event) {\n    event.preventDefault(); \n    titleVal = document.querySelector(\"#title\").value;\n    dueDateVal = document.querySelector(\"#duedate\").value\n    descriptionVal = document.querySelector(\"#description\").value\n    if(titleVal && dueDateVal && descriptionVal){\n        const data = newData(titleVal, dueDateVal, descriptionVal)\n        ;(0,_projects__WEBPACK_IMPORTED_MODULE_0__.createProject)(data.title, data.dueDate, data.description)\n    }\n    \n    \n    \n\n    dialog.close()\n});\n\nfunction newData(titleVal, dueDateVal, descriptionVal) {\n    const data = {\n        title: titleVal, \n        dueDate: dueDateVal,\n        description: descriptionVal \n    }\n    return data\n    \n}\n\n\n\n\n//# sourceURL=webpack://to-do/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createProject: () => (/* binding */ createProject)\n/* harmony export */ });\n/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ \"./src/index.js\");\n\nconst data = (0,___WEBPACK_IMPORTED_MODULE_0__.newData)()\n\nfunction createProject() {\n    console.log(data.title)\n}\n\n\n\n\n\n//# sourceURL=webpack://to-do/./src/projects.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createProject: () => (/* binding */ createProject)\n/* harmony export */ });\n\n\nfunction createProject(title, dueDate, description) {\n    console.log(title)\n}\n\n\n\n\n\n//# sourceURL=webpack://to-do/./src/projects.js?");
 
 /***/ })
 
@@ -89,7 +89,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()

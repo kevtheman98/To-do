@@ -10,53 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/createProjects.js":
-/*!*******************************!*\
-  !*** ./src/createProjects.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createProjects: () => (/* binding */ createProjects),\n/* harmony export */   \"default\": () => (/* binding */ create)\n/* harmony export */ });\n/* harmony import */ var _makeTask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./makeTask */ \"./src/makeTask.js\");\n/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./settings */ \"./src/settings.js\");\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storage */ \"./src/storage.js\");\n\n\n\n\n\n\n\n\nfunction create() {\n    const dialog = document.querySelector(\"dialog\")\n    const newListButton = document.querySelector(\"button\")\n    const container = document.querySelector(\".content\")\n    const confirmBtn = document.querySelector(\"#confirmBtn\")\n    newListButton.addEventListener(\"click\", () => {\n        dialog.showModal();\n        \n    })\n    \n    confirmBtn.addEventListener(\"click\", (event) => {\n        event.preventDefault();\n        dialog.close(title.value, duedate.value, description.value)\n\n        createProjects(title.value, duedate.value, description.value)\n        ;(0,_storage__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(title.value, duedate.value, description.value)\n    \n\n        \n    })\n}\n\nlet count = 0\nfunction createProjects(title, duedate, description) {\n    const content = document.querySelector('.content')\n    const projectBox = document.createElement('button')\n    projectBox.classList = \"projectBox\"\n    count += 1\n    projectBox.setAttribute('title', title)\n    projectBox.setAttribute('duedate', duedate)\n    projectBox.setAttribute('description', description)\n    projectBox.setAttribute('id', count)\n    const newTitle = document.createElement('div')\n    newTitle.textContent = title\n    newTitle.classList = 'projectTitle'\n    const newdueDate = document.createElement('div')\n    newdueDate.textContent = duedate\n    newdueDate.classList = 'dueDate'\n    const newDescription = document.createElement('div')\n    newDescription.textContent = description\n    newDescription.classList = 'description'\n    content.appendChild(projectBox)\n    projectBox.appendChild(newTitle)\n    projectBox.appendChild(newdueDate)\n    projectBox.appendChild(newDescription)\n    const createTask = document.createElement('button')\n    createTask.setAttribute('id', count)\n    createTask.classList = \"tasks\"\n    projectBox.appendChild(createTask)\n    const projectList = document.querySelectorAll('.projectBox')\n    createTask.addEventListener('click', () => {\n        for(let i = 0; i < projectList.length;i++){\n            const projectId = projectList[i].id\n            if(projectId == createTask.id) {\n                (0,_makeTask__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(projectList[i].title, projectList[i])\n                \n            }\n            console.log(\"This odnt work\")\n\n        }\n        \n    })\n    \n    \n}\n\n\n\n\n\n\n\n//# sourceURL=webpack://to-do/./src/createProjects.js?");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _createProjects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createProjects */ \"./src/createProjects.js\");\n/* harmony import */ var _makeTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./makeTask */ \"./src/makeTask.js\");\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storage */ \"./src/storage.js\");\n/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./settings */ \"./src/settings.js\");\n\n\n\n\n\n(0,_storage__WEBPACK_IMPORTED_MODULE_2__.checkExisting)()\n;(0,_createProjects__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\n\n\n\n\n//# sourceURL=webpack://to-do/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   newData: () => (/* binding */ newData)\n/* harmony export */ });\n/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects */ \"./src/projects.js\");\n\nconst dialog = document.querySelector('dialog')\nconst confirm = document.querySelector(\"#confirmBtn\")\nlet titleVal;\nlet dueDateVal;\nlet descriptionVal;\nconst addProjectBtn = document.querySelector(\".addProject\")\n\naddProjectBtn.addEventListener(\"click\", () => {\n    dialog.showModal();\n    confirm.addEventListener(\"click\", function(event) {\n        event.preventDefault(); \n        titleVal = document.querySelector(\"#title\").value;\n        dueDateVal = document.querySelector(\"#duedate\").value\n        descriptionVal = document.querySelector(\"#description\").value\n        \n\n        dialog.close()\n    });\n})\n\nfunction newData() {\n    return {\n        title: titleVal, \n        dueDate: dueDateVal,\n        description: descriptionVal}\n}\n\nif(newData) {\n    (0,_projects__WEBPACK_IMPORTED_MODULE_0__.createProject)()\n}\n\n\n\n//# sourceURL=webpack://to-do/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/makeTask.js":
+/***/ "./src/projects.js":
 /*!*************************!*\
-  !*** ./src/makeTask.js ***!
+  !*** ./src/projects.js ***!
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ makeTask)\n/* harmony export */ });\n/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./settings */ \"./src/settings.js\");\n\n\nlet count = 0\nfunction makeTask(currentProjectTitle, currentProjectBox, currentTaskValue) {\n   const taskBox = document.createElement(\"div\")\n   const todo = document.createElement(\"input\")\n   \n   taskBox.classList = \"taskBox\"\n   taskBox.setAttribute('id', currentProjectTitle)\n   todo.setAttribute('class', 'todo')\n   taskBox.appendChild(todo)\n   currentProjectBox.appendChild(taskBox)\n   const key = `tasksFor_${currentProjectTitle}${count += 1}`\n   if(currentTaskValue) {\n      todo.value = currentTaskValue\n   }\n   todo.addEventListener('blur', () => {\n      localStorage.setItem(key, todo.value)\n   })\n   ;(0,_settings__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\n} \n   \n\n\n\n//# sourceURL=webpack://to-do/./src/makeTask.js?");
-
-/***/ }),
-
-/***/ "./src/settings.js":
-/*!*************************!*\
-  !*** ./src/settings.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ settings)\n/* harmony export */ });\nfunction settings() {\n    const taskBox = document.querySelectorAll('.taskBox')\n    function checkOff() {\n        taskBox.forEach(box => {\n            if(!box.querySelector('.deleteBtn')) {\n                const deleteBtn = document.createElement('button');\n                deleteBtn.classList.add(\"deleteBtn\");\n                deleteBtn.textContent = \"Delete\";\n                box.appendChild(deleteBtn);\n                deleteBtn.addEventListener(\"click\", () => {\n                    box.remove();\n                    localStorage.removeItem('')\n                });\n\n            }\n        });\n    }\n    checkOff()\n    \n}\n\n//# sourceURL=webpack://to-do/./src/settings.js?");
-
-/***/ }),
-
-/***/ "./src/storage.js":
-/*!************************!*\
-  !*** ./src/storage.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   checkExisting: () => (/* binding */ checkExisting),\n/* harmony export */   \"default\": () => (/* binding */ storeProjects)\n/* harmony export */ });\n/* harmony import */ var _createProjects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createProjects */ \"./src/createProjects.js\");\n/* harmony import */ var _makeTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./makeTask */ \"./src/makeTask.js\");\n\n\n\n\nlet count = 0\nfunction storeProjects(title, duedate, description) {\n    const projectData = {\n        title: title,\n        duedate: duedate,\n        description: description\n    }\n    const projectString = JSON.stringify(projectData)\n    const key = `project_${title}`\n    localStorage.setItem(key, projectString)\n    \n}\n\nfunction checkExisting() {\n    let projectValue;\n    for (let i = 0; i < localStorage.length; i++){\n        const key = localStorage.key(i)\n        \n        if(key.startsWith(\"project_\")) {\n            projectValue = JSON.parse(localStorage.getItem(key));\n            (0,_createProjects__WEBPACK_IMPORTED_MODULE_0__.createProjects)(projectValue.title, projectValue.duedate, projectValue.description)\n        } else if(key.startsWith(\"tasksFor_\")) {\n            const taskValue = (localStorage.getItem(key))\n            const projectBoxList = document.querySelectorAll('.projectBox')\n            for(let j = 0; j < projectBoxList.length; j++) {\n                const projectTitle =  projectBoxList[j].querySelector(\".projectTitle\").textContent\n                const realkey = key.replace(\"tasksFor_\", \"\")\n                let count = 0\n                for (let k = 0; k < projectBoxList.length; k++) {\n                    \n                    const projectTitleWithCount = projectTitle + count; \n                    console.log(\"Project Title with Count:\", projectTitleWithCount);\n                    console.log(\"Real Key:\", realkey);\n                    if (projectTitleWithCount == realkey) {\n                        (0,_makeTask__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(projectValue, projectBoxList[j], taskValue);\n                        console.log(\"This is a task\");\n                    }\n                    count++\n                }\n            }\n        }\n        \n    }\n}\n\n\n\n\n    \n\n\n\n//# sourceURL=webpack://to-do/./src/storage.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createProject: () => (/* binding */ createProject)\n/* harmony export */ });\n/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ \"./src/index.js\");\n\nconst data = (0,___WEBPACK_IMPORTED_MODULE_0__.newData)()\n\nfunction createProject() {\n    console.log(data.title)\n}\n\n\n\n\n\n//# sourceURL=webpack://to-do/./src/projects.js?");
 
 /***/ })
 
@@ -119,7 +89,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()

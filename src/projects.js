@@ -1,5 +1,6 @@
 import { createTask } from "./task"
 
+
 const projectsTab = document.querySelector(".projects")
 let count = 1
 export function createProject(title, dueDate, description) {
@@ -20,8 +21,10 @@ export function createProject(title, dueDate, description) {
     addTaskBtn.classList = "addTaskBtn"
     projectContainer.appendChild(addTaskBtn)
     count += 1
+    localStorage.setItem
     addTaskBtn.addEventListener("click", () => {
-        createTask(projectContainer)
+        createTask(projectContainer, title)
+        
     })
     
 

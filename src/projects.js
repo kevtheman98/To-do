@@ -1,19 +1,28 @@
+import { createTask } from "./task"
+
 const projectsTab = document.querySelector(".projects")
 let count = 1
 export function createProject(title, dueDate, description) {
-    const projectCountainer = document.createElement('div')
-    projectCountainer.classList = count + "projectCountainer"
-    count += 1
+    const projectContainer = document.createElement('button')
+    projectContainer.classList = "projectContainer"
+    projectContainer.title = title
     const titleBox = document.createElement('div')
     const dueDateBox = document.createElement('div')
     const descriptionBox = document.createElement('div')
     titleBox.textContent = title
     dueDateBox.textContent = dueDate
     descriptionBox.textContent = description
-    projectCountainer.appendChild(titleBox)
-    projectCountainer.appendChild(dueDateBox)
-    projectCountainer.appendChild(descriptionBox)
-    projectsTab.appendChild(projectCountainer)
+    projectContainer.appendChild(titleBox)
+    projectContainer.appendChild(dueDateBox)
+    projectContainer.appendChild(descriptionBox)
+    projectsTab.appendChild(projectContainer)
+    const addTaskBtn = document.createElement('button')
+    addTaskBtn.classList = "addTaskBtn"
+    projectContainer.appendChild(addTaskBtn)
+    count += 1
+    addTaskBtn.addEventListener("click", () => {
+        createTask(projectContainer)
+    })
     
 
 }

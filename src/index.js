@@ -1,13 +1,19 @@
 import { createProject } from "./projects";
 import { createTask } from "./task";
+import { store } from "./storage";
+import { projectsRetrive } from "./storage";
+import { tasksRetrive } from "./storage";
 const dialog = document.querySelector('dialog')
 const confirm = document.querySelector("#confirmBtn")
 const addProjectBtn = document.querySelector(".addProject")
+const saveBtn = document.querySelector(".saveBtn")
 let titleVal = ""
 let dueDateVal = ""
 let descriptionVal = ""
 let count = 0
 
+projectsRetrive()
+tasksRetrive()
 
 addProjectBtn.addEventListener("click", () => {
     dialog.showModal();
@@ -33,6 +39,9 @@ export function newData(titleVal, dueDateVal, descriptionVal) {
     }
     return data
 }
+saveBtn.addEventListener("click", () => {
+    store()
+})
 
 
 

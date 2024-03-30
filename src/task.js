@@ -7,9 +7,7 @@ export function createTask(projectContainer, projectTitle, value = 0) {
         task.value = value
     }
     projectContainer.appendChild(task)
-    task.addEventListener("blur", () => {
-        localStorage.setItem("task_" + task.title, task.value)
-    })
+    
     
 
 }

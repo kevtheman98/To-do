@@ -21,7 +21,7 @@ export function createProject(title, dueDate, description) {
     addTaskBtn.classList = "addTaskBtn"
     projectContainer.appendChild(addTaskBtn)
     count += 1
-    localStorage.setItem
+    localStorage.setItem("project_" + title, dueDate + description)
     addTaskBtn.addEventListener("click", () => {
         createTask(projectContainer, title)
         

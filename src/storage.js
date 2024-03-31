@@ -49,5 +49,35 @@ export function tasksRetrive() {
         
     }
 }
+
+export function delTask(taskContainer) {
+    const title = taskContainer.title
+    for(let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i)
+        console.log("key" + key + " " + "title" + title)
+        if(title == key) {
+            
+            localStorage.removeItem(key)
+        }
+    }
+    
+}
+
+export function remove() {
+    const projectsList = document.querySelectorAll(".projectContainer")
+
+    for(let i = 0; i < projectsList.length; i++) {
+        projectsList[i].remove()
+    }
+
+    for(let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i)
+        localStorage.removeItem(key)
         
+    }
+}
+
+
+
+
 

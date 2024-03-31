@@ -3,6 +3,7 @@ import { createTask } from "./task";
 import { store } from "./storage";
 import { projectsRetrive } from "./storage";
 import { tasksRetrive } from "./storage";
+import { delTask } from "./storage";
 const dialog = document.querySelector('dialog')
 const confirm = document.querySelector("#confirmBtn")
 const addProjectBtn = document.querySelector(".addProject")
@@ -42,6 +43,12 @@ export function newData(titleVal, dueDateVal, descriptionVal) {
 saveBtn.addEventListener("click", () => {
     store()
 })
+
+
+
+
+
+
 
 
 

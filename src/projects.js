@@ -1,12 +1,14 @@
 import { createTask } from "./task"
+import { deleteStorageTitle, deleteStorageTask } from "./storage"
 
 
 const projectsTab = document.querySelector(".projects")
 let count = 1
 export function createProject(title, dueDate, description) {
+    
     const projectContainer = document.createElement('button')
     projectContainer.classList = "projectContainer"
-    projectContainer.title = title
+    projectContainer.setAttribute("title", title);
     const titleBox = document.createElement('div')
     const dueDateBox = document.createElement('div')
     const descriptionBox = document.createElement('div')
@@ -29,15 +31,10 @@ export function createProject(title, dueDate, description) {
         
     })
 
-    const deleteBtn = document.createElement('button')
-    deleteBtn.textContent = "delete"
-    deleteBtn.addEventListener("click", () => {
-        projectContainer.remove()
-    })
-    projectContainer.appendChild(deleteBtn)
+    
     
 
-    
+
 
 }
 

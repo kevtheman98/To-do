@@ -1,10 +1,14 @@
-import { delTask } from "./storage"
-let count = 1
-export function createTask(projectContainer, projectTitle, value = 0) {
+import { delTask, remove } from "./storage"
+let count = 0
+export function createTask(projectContainer, projectTitle, value, total) {
+    if(total) {
+        count = total        
+    }
     
     const taskContainer = document.createElement('div')
     taskContainer.classList = "taskContainer"
-    taskContainer.title = "task_" + projectTitle + "_" + count
+    taskContainer.id = "task_" + projectTitle + "_" + count
+    taskContainer.title = projectTitle
     const task = document.createElement('input')
     task.classList = "task"
     task.title = projectTitle 
@@ -19,11 +23,11 @@ export function createTask(projectContainer, projectTitle, value = 0) {
     taskContainer.appendChild(task)
     taskContainer.appendChild(taskDel)
 
-    taskDel.addEventListener('click', (event) => {
-        
+    taskDel.addEventListener('click', (event) => {    
         const parentElement = event.target.parentNode;
         parentElement.remove() 
         delTask(parentElement)
+    
 
     })
         

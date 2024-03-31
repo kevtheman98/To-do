@@ -51,33 +51,37 @@ export function tasksRetrive() {
 }
 
 export function delTask(taskContainer) {
+    const id = taskContainer.id
     const title = taskContainer.title
+    let keyFound = false;
     for(let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i)
-        console.log("key" + key + " " + "title" + title)
-        if(title == key) {
-            
-            localStorage.removeItem(key)
+        const value = localStorage.getItem(key)
+        console.log("key" + key + " " + "id" + id)
+        if(keyFound) {
+            let keyCount = key.substring(6 + title.length)
+            keyCount = parseInt(keyCount) - 1
+            console.log(keyFound)
+            if(key.startsWith("task_") && key.includes(title)) {
+                const noCountKey = key.slice(0, -1)
+                const newKey = noCountKey + keyCount
+                localStorage.removeItem(key)
+                localStorage.setItem(newKey, value)
+                console.log(newKey)
+
+            }
+
         }
+        if(id == key) {
+            keyFound = true
+            localStorage.removeItem(key)
+            
+        }
+
     }
+    keyFound = false
     
 }
-
-export function remove() {
-    const projectsList = document.querySelectorAll(".projectContainer")
-
-    for(let i = 0; i < projectsList.length; i++) {
-        projectsList[i].remove()
-    }
-
-    for(let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i)
-        localStorage.removeItem(key)
-        
-    }
-}
-
-
 
 
 

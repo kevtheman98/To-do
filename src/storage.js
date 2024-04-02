@@ -54,14 +54,15 @@ export function delTask(taskContainer) {
     const id = taskContainer.id
     const title = taskContainer.title
     let keyFound = false;
-    for(let i = 0; i < localStorage.length; i++) {
+    const numItems = localStorage.length
+    for(let i = numItems - 1; i >= 0; i--) {
         const key = localStorage.key(i)
         const value = localStorage.getItem(key)
         console.log("key" + key + " " + "id" + id)
+        console.log(keyFound)
         if(keyFound) {
             let keyCount = key.substring(6 + title.length)
-            keyCount = parseInt(keyCount) - 1
-            console.log(keyFound)
+            keyCount = parseInt(keyCount) + 1
             if(key.startsWith("task_") && key.includes(title)) {
                 const noCountKey = key.slice(0, -1)
                 const newKey = noCountKey + keyCount
@@ -72,14 +73,14 @@ export function delTask(taskContainer) {
             }
 
         }
-        if(id == key) {
+        if(id.toString() === key.toString()) {
             keyFound = true
+            console.log("keyis found" + keyFound)
             localStorage.removeItem(key)
             
         }
 
     }
-    keyFound = false
     
 }
 

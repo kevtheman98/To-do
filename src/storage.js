@@ -1,19 +1,26 @@
 import { createProject } from "./projects";
 import { createTask } from "./task";
 export function store() {
+    
+    localStorage.clear()
+    
     const projectContainers = document.querySelectorAll(".projectContainer");
 
     // Loop through each project container
     projectContainers.forEach(project => {
-        const projectTitle = project.getAttribute("title");
+        const title = project.getAttribute("title");
+        const dueDate = project.getAttribute("duedate")
+        const description = project.getAttribute("description")
+
 
         // Find tasks within the current project container
         const projectTasks = project.querySelectorAll(".task");
+        localStorage.setItem("project_" + title, dueDate + description)
 
         // Loop through each task within the current project container
         projectTasks.forEach((task, index) => {
             // Store task values in local storage with a key based on project title and task index
-            localStorage.setItem(`task_${projectTitle}_${index}`, task.value);
+            localStorage.setItem(`task_${title}_${index}`, task.value);
         });
     });
 }
@@ -55,29 +62,13 @@ export function delTask(taskContainer) {
     const title = taskContainer.title
     let keyFound = false;
     const numItems = localStorage.length
-    for(let i = numItems - 1; i >= 0; i--) {
+    for(let i = 0; i < numItems; i++) {
         const key = localStorage.key(i)
-        const value = localStorage.getItem(key)
-        console.log("key" + key + " " + "id" + id)
-        console.log(keyFound)
-        if(keyFound) {
-            let keyCount = key.substring(6 + title.length)
-            keyCount = parseInt(keyCount) + 1
-            if(key.startsWith("task_") && key.includes(title)) {
-                const noCountKey = key.slice(0, -1)
-                const newKey = noCountKey + keyCount
-                localStorage.removeItem(key)
-                localStorage.setItem(newKey, value)
-                console.log(newKey)
-
-            }
-
-        }
-        if(id.toString() === key.toString()) {
-            keyFound = true
-            console.log("keyis found" + keyFound)
+        if(key === id) {
             localStorage.removeItem(key)
-            
+            console.log("removed")
+
+            break
         }
 
     }
@@ -86,8 +77,8 @@ export function delTask(taskContainer) {
 
 export function delProject(projectContainer) {
     const title = projectContainer.getAttribute('title')
-    /* Have to use reverse for loop because removal updating length*/
-    for(let i = localStorage.length - 1; i >= 0; i--) {
+    const numItems = localStorage.length
+    for(let i = 0; i < numItems; i++)  {
         const key = localStorage.key(i)
         if(key.includes(title)) {
             localStorage.removeItem(key)

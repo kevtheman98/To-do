@@ -1,4 +1,5 @@
 import { delTask } from "./storage"
+import { store } from "./storage"
 let count = 0
 export function createTask(projectContainer, projectTitle, value, total) {
     if(total) {
@@ -27,6 +28,7 @@ export function createTask(projectContainer, projectTitle, value, total) {
         const parentElement = event.target.parentNode;
         parentElement.remove() 
         delTask(parentElement)
+        
         
     
 

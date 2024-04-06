@@ -9,6 +9,8 @@ export function createProject(title, dueDate, description) {
     const projectContainer = document.createElement('button')
     projectContainer.classList = "projectContainer"
     projectContainer.setAttribute("title", title);
+    projectContainer.setAttribute("duedate", dueDate)
+    projectContainer.setAttribute("description", description)
     const titleBox = document.createElement('div')
     const dueDateBox = document.createElement('div')
     const descriptionBox = document.createElement('div')
@@ -29,7 +31,7 @@ export function createProject(title, dueDate, description) {
     addTaskBtn.textContent = "+"
     projectContainer.appendChild(addTaskBtn)
     count += 1
-    localStorage.setItem("project_" + title, dueDate + description)
+    
     addTaskBtn.addEventListener("click", () => {
         createTask(projectContainer, title)
         

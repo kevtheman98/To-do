@@ -43,6 +43,7 @@ export function createProject(title, dueDate, description) {
             parentElement.removeChild(parentElement.firstChild);
         }
         delProject(parentElement)
+        parentElement.remove()
     
 
     })

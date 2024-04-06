@@ -78,7 +78,7 @@ export function delTask(taskContainer) {
 export function delProject(projectContainer) {
     const title = projectContainer.getAttribute('title')
     const numItems = localStorage.length
-    for(let i = 0; i < numItems; i++)  {
+    for(let i = numItems - 1; i >= 0; i--) {
         const key = localStorage.key(i)
         if(key.includes(title)) {
             localStorage.removeItem(key)

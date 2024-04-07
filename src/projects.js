@@ -1,5 +1,6 @@
 import { createTask } from "./task"
 import { deleteStorageTitle, deleteStorageTask, delProject } from "./storage"
+import { store } from "./storage"
 
 
 const projectsTab = document.querySelector(".projects")
@@ -34,6 +35,7 @@ export function createProject(title, dueDate, description) {
     
     addTaskBtn.addEventListener("click", () => {
         createTask(projectContainer, title)
+        store()
         
     })
 
@@ -44,6 +46,7 @@ export function createProject(title, dueDate, description) {
         }
         delProject(parentElement)
         parentElement.remove()
+        store()
     
 
     })

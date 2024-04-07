@@ -59,8 +59,6 @@ export function tasksRetrive() {
 
 export function delTask(taskContainer) {
     const id = taskContainer.id
-    const title = taskContainer.title
-    let keyFound = false;
     const numItems = localStorage.length
     for(let i = 0; i < numItems; i++) {
         const key = localStorage.key(i)

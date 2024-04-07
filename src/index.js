@@ -27,6 +27,7 @@ confirm.addEventListener("click", function(event) {
     if(titleVal){
         const data = newData(titleVal, dueDateVal, descriptionVal)
         createProject(data.title, data.dueDate, data.description)
+        store()
         
     }
     dialog.close()
@@ -40,9 +41,7 @@ export function newData(titleVal, dueDateVal, descriptionVal) {
     }
     return data
 }
-saveBtn.addEventListener("click", () => {
-    store()
-})
+
 
 
 

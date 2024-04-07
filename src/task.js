@@ -28,6 +28,7 @@ export function createTask(projectContainer, projectTitle, value, total) {
         const parentElement = event.target.parentNode;
         parentElement.remove() 
         delTask(parentElement)
+        store()
         
         
     
